@@ -3,7 +3,6 @@ from .models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from django.db.models import Q
 
 @login_required
 def lista_produtos(request):
@@ -44,11 +43,11 @@ def criar_produto(request):
     return render(request, 'produtos/form.html', {'form': form})
 
 @login_required
-def editar_produto(request, produto_id):
+def editar_produto(request, id):
 
-    produto = Produto.objects.get(id=produto_id)
+    produto = Produto.objects.get(Produto, id=id)
 
-    if produto.usuario != request.user:  # Verifica se o produto pertence ao usuário
+    if produto.usuario != request.user:
         return HttpResponseForbidden("Você não tem permissão para editar este produto.")
     
     if request.method == 'POST':
@@ -62,10 +61,10 @@ def editar_produto(request, produto_id):
     return render(request, 'seu_app/editar_produto.html', {'form': form})
 
 @login_required
-def excluir_produto(request, produto_id):
-    produto = Produto.objects.get(id=produto_id)
+def excluir_produto(request, id):
+    produto = Produto.objects.get(Produto, id=id)
     
-    if produto.usuario != request.user:  # Verifica se o produto pertence ao usuário
+    if produto.usuario != request.user:
         return HttpResponseForbidden("Você não tem permissão para excluir este produto.")
     
     produto.delete()
