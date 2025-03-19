@@ -1,0 +1,4 @@
+Melhorar o design usando Bootstrap. - OK
+Adicionar um sistema de login e autenticação.
+Criar filtros de busca para listar produtos por nome, preço ou data.
+Usar Django REST Framework (DRF) para transformar em API.
