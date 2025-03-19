@@ -27,10 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/login/'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'usuarios',
     'produtos',
     'django.contrib.admin',
     'django.contrib.auth',
