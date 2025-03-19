@@ -8,6 +8,29 @@
     <a href="{% url 'criar_produto' %}" class="btn btn-primary">Adicionar Produto</a>
 </div>
 
+<form method="get">
+    <div class="form-row mb-3">
+        <div class="col">
+            <input type="text" name="nome" class="form-control-sm" placeholder="Nome do Produto" value="{{ request.GET.nome }}">
+        </div>
+        <div class="col">
+            <input type="number" name="preco_min" class="form-control-sm" placeholder="Preço Mínimo" value="{{ request.GET.preco_min }}">
+        </div>
+        <div class="col">
+            <input type="number" name="preco_max" class="form-control-sm" placeholder="Preço Máximo" value="{{ request.GET.preco_max }}">
+        </div>
+        <div class="col">
+            <input type="date" name="data_inicio" class="form-control-sm" value="{{ request.GET.data_inicio }}">
+        </div>
+        <div class="col">
+            <input type="date" name="data_fim" class="form-control-sm" value="{{ request.GET.data_fim }}">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
 <table class="table table-striped mt-3">
     <thead class="table-dark">
         <tr>

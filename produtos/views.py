@@ -3,10 +3,31 @@ from .models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.db.models import Q
 
 @login_required
 def lista_produtos(request):
-    produtos = Produto.objects.filter(usuario=request.user)
+    produtos = Produto.objects.all()
+
+    nome = request.GET.get('nome', '')
+    preco_min = request.GET.get('preco_min', '')
+    preco_max = request.GET.get('preco_max', '')
+    data_inicio = request.GET.get('data_inicio', '')
+    data_fim = request.GET.get('data_fim', '')
+
+    if nome:
+        produtos = produtos.filter(nome__icontains=nome)
+
+    if preco_min:
+        produtos = produtos.filter(preco__gte=preco_min)
+    if preco_max:
+        produtos = produtos.filter(preco__lte=preco_max)
+
+    if data_inicio:
+        produtos = produtos.filter(data_criacao__gte=data_inicio)
+    if data_fim:
+        produtos = produtos.filter(data_criacao__lte=data_fim)
+
     return render(request, 'produtos/lista.html', {'produtos': produtos})
 
 @login_required
