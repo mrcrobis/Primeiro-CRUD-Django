@@ -3,6 +3,8 @@ from .models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from .serializers import ProdutoSerializer
+from rest_framework import viewsets
 
 @login_required
 def lista_produtos(request):
@@ -42,6 +44,7 @@ def editar_produto(request, produto_id):
 
 @login_required
 def excluir_produto(request, produto_id):
+
     produto = Produto.objects.get(id=produto_id)
     
     if produto.usuario != request.user:  # Verifica se o produto pertence ao usuário
@@ -49,3 +52,7 @@ def excluir_produto(request, produto_id):
     
     produto.delete()
     return redirect('lista_produtos')
+
+class ProdutoViewSet(viewsets.ModelViewSet):
+    queryset = Produto.objects.all()
+    serializer_class = ProdutoSerializer
