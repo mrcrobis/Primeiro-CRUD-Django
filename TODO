@@ -1,4 +1,4 @@
 Melhorar o design usando Bootstrap. - OK
 Adicionar um sistema de login e autenticação. - OK
 Criar filtros de busca para listar produtos por nome, preço ou data. - NO
-Usar Django REST Framework (DRF) para transformar em API.
+Usar Django REST Framework (DRF) para transformar em API. - OK

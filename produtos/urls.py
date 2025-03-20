@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import lista_produtos, criar_produto, editar_produto, excluir_produto
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import DefaultRouter # type: ignore
 from .views import ProdutoViewSet
 
 router = DefaultRouter()
